@@ -1,0 +1,457 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     19581,        449]
+NotebookOptionsPosition[     18745,        426]
+NotebookOutlinePosition[     19184,        443]
+CellTagsIndexPosition[     19141,        440]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["GeeViz.nb v1.0", "Title",
+ CellChangeTimes->{{3.8047403424356427`*^9, 3.804740344420643*^9}, {
+  3.8047408290763226`*^9, 3.8047408316593227`*^9}, {3.804743019483019*^9, 
+  3.8047430202190185`*^9}},ExpressionUUID->"ecfa150c-ee95-4b30-a9a1-\
+bbbd75dcf05d"],
+
+Cell[TextData[{
+ "Ruvi Lecamwasm, 20 July 2020\nVisualise the spherical-mirror resonator \
+stability diagram. See Saleh & Teich ",
+ StyleBox["Fundamentals of Photonics",
+  FontSlant->"Italic"],
+ " 3rd Edition, Section 11.2 \[OpenCurlyDoubleQuote]Spherical-Mirror \
+Resonators\[CloseCurlyDoubleQuote]. We assume the cavity length is fixed, and \
+vary \n\nJust run the whole notebook, then click around on the Manipulate \
+plot."
+}], "Text",
+ CellChangeTimes->{{3.8047403457166443`*^9, 3.804740369612157*^9}, {
+  3.804740501787611*^9, 3.804740517947611*^9}, {3.8047425243633127`*^9, 
+  3.8047425481143126`*^9}, {3.804743084811225*^9, 3.8047431062907405`*^9}, {
+  3.8047431870833435`*^9, 
+  3.8047432103118553`*^9}},ExpressionUUID->"9d2cbf57-c4f0-4e28-bb6e-\
+7576f9094a51"],
+
+Cell[BoxData[
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"gRange", "=", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"gPlot", "=", 
+     RowBox[{"RegionPlot", "[", " ", 
+      RowBox[{
+       RowBox[{"0", "<", 
+        RowBox[{"g1", " ", "g2"}], " ", "<", "1"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"g1", ",", 
+         RowBox[{"-", "gRange"}], ",", "gRange"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"g2", ",", 
+         RowBox[{"-", "gRange"}], ",", "gRange"}], "}"}], ",", 
+       RowBox[{"FrameLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<\!\(\*SubscriptBox[\(g\), \(1\)]\)\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(g\), \(2\)]\)\>\""}], "}"}]}], ",", 
+       RowBox[{"LabelStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"FontSize", "\[Rule]", "25"}], ",", 
+          RowBox[{"FontColor", "\[Rule]", "Black"}]}], "]"}]}], ",", 
+       RowBox[{"RotateLabel", "\[Rule]", "False"}], ",", 
+       RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+       RowBox[{"Epilog", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Gray", ",", "Dashed", ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "gRange"}], ",", 
+               RowBox[{"-", "gRange"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"gRange", ",", "gRange"}], "}"}]}], "}"}], "]"}]}], 
+         "}"}]}]}], "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.8047368287003317`*^9, 3.8047369823991823`*^9}, {
+   3.804737069463209*^9, 3.804737092340209*^9}, {3.804737585764778*^9, 
+   3.804737585886779*^9}, 3.8047403978374195`*^9, 3.8047405852396116`*^9, {
+   3.804740793002322*^9, 3.8047408211253214`*^9}, {3.804742128301646*^9, 
+   3.8047421299886475`*^9}, {3.8047422599767075`*^9, 
+   3.8047422626827087`*^9}, {3.8047423364372225`*^9, 3.8047423835242233`*^9}, 
+   3.8047431596888266`*^9},
+ CellLabel->"In[9]:=",ExpressionUUID->"87258093-c2c5-4f02-8f99-8f431b8b2edf"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "g1", ",", "g2", ",", "gCheck", ",", "R1", ",", "R2", ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"sigFigs", "=", "2"}], ",", "FormatNumber", ",", 
+       "\[IndentingNewLine]", "mirrors", ",", 
+       RowBox[{"\[Theta]Range", "=", 
+        FractionBox["\[Pi]", "4"]}], ",", "mirrorStyle", ",", "CL", ",", "CR",
+        ",", 
+       RowBox[{"mirrorRange", "=", "2"}], ",", "\[IndentingNewLine]", 
+       "leftMirrorEqn", ",", "rightMirrorEqn", ",", "leftMirrorTop", ",", 
+       "leftMirrorBottom", ",", "rightMirrorTop", ",", "rightMirrorBottom"}], 
+      "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"FormatNumber", "[", "n_", "]"}], ":=", 
+       RowBox[{"ToString", "@", 
+        RowBox[{"NumberForm", "[", 
+         RowBox[{"n", ",", "sigFigs"}], "]"}]}]}], ";", "\[IndentingNewLine]",
+       "\[IndentingNewLine]", 
+      RowBox[{"g1", "=", 
+       RowBox[{"p", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"g2", "=", 
+       RowBox[{"p", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"gCheck", "=", 
+       RowBox[{"0", "<", 
+        RowBox[{"g1", " ", "g2"}], "<", "1"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"R1", "=", 
+       FractionBox["1", 
+        RowBox[{"g1", "-", "1"}]]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"R2", "=", 
+       FractionBox["1", 
+        RowBox[{"g2", "-", "1"}]]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"leftMirrorEqn", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "R1"}], 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Cos", "[", 
+            RowBox[{"\[Pi]", "+", "\[Theta]"}], "]"}], ",", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"\[Pi]", "+", "\[Theta]"}], "]"}]}], "}"}]}], "+", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "R1"}], "-", "0.5"}], ",", "0"}], "}"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"leftMirrorTop", "=", 
+       RowBox[{"leftMirrorEqn", "/.", 
+        RowBox[{"\[Theta]", "\[Rule]", 
+         RowBox[{"-", "\[Theta]Range"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"leftMirrorBottom", "=", 
+       RowBox[{"leftMirrorEqn", "/.", 
+        RowBox[{"\[Theta]", "\[Rule]", "\[Theta]Range"}]}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"rightMirrorEqn", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "R2"}], 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+           RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}]}], "+", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"0.5", "+", "R2"}], ",", "0"}], "}"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"rightMirrorTop", "=", 
+       RowBox[{"rightMirrorEqn", "/.", 
+        RowBox[{"\[Theta]", "\[Rule]", 
+         RowBox[{"-", "\[Theta]Range"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"rightMirrorBottom", "=", 
+       RowBox[{"rightMirrorEqn", "/.", 
+        RowBox[{"\[Theta]", "\[Rule]", "\[Theta]Range"}]}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"CL", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "1"}], "/", "2"}], "-", "R1"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"CR", "=", 
+       RowBox[{
+        RowBox[{"1", "/", "2"}], "+", "R2"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"mirrorStyle", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Thickness", "[", "0.01", "]"}], ",", 
+         InterpretationBox[
+          ButtonBox[
+           TooltipBox[
+            GraphicsBox[{
+              {GrayLevel[0], RectangleBox[{0, 0}]}, 
+              {GrayLevel[0], RectangleBox[{1, -1}]}, 
+              {RGBColor[0.368417, 0.506779, 0.709798], 
+               RectangleBox[{0, -1}, {2, 1}]}},
+             AspectRatio->1,
+             DefaultBaseStyle->"ColorSwatchGraphics",
+             Frame->True,
+             
+             FrameStyle->RGBColor[
+              0.24561133333333335`, 0.3378526666666667, 0.4731986666666667],
+             FrameTicks->None,
+             
+             ImageSize->
+              Dynamic[{
+               Automatic, 
+                1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}],
+             PlotRangePadding->None],
+            StyleBox[
+             RowBox[{"RGBColor", "[", 
+               RowBox[{"0.368417`", ",", "0.506779`", ",", "0.709798`"}], 
+               "]"}], NumberMarks -> False]],
+           Appearance->None,
+           BaseStyle->{},
+           BaselinePosition->Baseline,
+           ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+             If[
+              Not[
+               AbsoluteCurrentValue["Deployed"]], 
+              SelectionMove[Typeset`box$, All, Expression]; 
+              FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+              FrontEnd`Private`$ColorSelectorInitialColor = 
+               RGBColor[0.368417, 0.506779, 0.709798]; 
+              FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+              MathLink`CallFrontEnd[
+                FrontEnd`AttachCell[Typeset`box$, 
+                 FrontEndResource["RGBColorValueSelector"], {
+                 0, {Left, Bottom}}, {Left, Top}, 
+                 "ClosingActions" -> {
+                  "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+           DefaultBaseStyle->{},
+           Evaluator->Automatic,
+           Method->"Preemptive"],
+          RGBColor[0.368417, 0.506779, 0.709798],
+          Editable->False,
+          Selectable->False]}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"mirrors", "=", 
+       RowBox[{"ParametricPlot", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"leftMirrorEqn", ",", "rightMirrorEqn"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\[Theta]", ",", 
+           RowBox[{"-", "\[Theta]Range"}], ",", "\[Theta]Range"}], "}"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "mirrorRange"}], ",", "mirrorRange"}], "}"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"PlotStyle", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"mirrorStyle", ",", "mirrorStyle"}], "}"}]}], ",", 
+         RowBox[{"Ticks", "\[Rule]", "None"}], ",", 
+         RowBox[{"AspectRatio", "\[Rule]", "1"}], ",", 
+         RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Epilog", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"Dashed", ",", "Thick", ",", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{"leftMirrorTop", ",", 
+               RowBox[{"{", 
+                RowBox[{"CL", ",", "0"}], "}"}], ",", "leftMirrorBottom"}], 
+              "}"}], "]"}], ",", ",", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{"rightMirrorTop", ",", 
+               RowBox[{"{", 
+                RowBox[{"CR", ",", "0"}], "}"}], ",", "rightMirrorBottom"}], 
+              "}"}], "]"}]}], "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Show", "[", 
+          RowBox[{"gPlot", ",", 
+           RowBox[{"PlotLabel", "\[Rule]", 
+            RowBox[{"\"\<\!\(\*SubscriptBox[\(g\), \(1\)]\)=\>\"", "<>", 
+             RowBox[{"FormatNumber", "@", "g1"}], "<>", 
+             "\"\<, \!\(\*SubscriptBox[\(g\), \(2\)]\)=\>\"", "<>", 
+             RowBox[{"FormatNumber", "@", "g2"}], "<>", 
+             "\"\<; \!\(\*SubscriptBox[\(g\), \
+\(1\)]\)\!\(\*SubscriptBox[\(g\), \(2\)]\)=\>\"", "<>", 
+             RowBox[{"FormatNumber", "[", 
+              RowBox[{"g1", " ", "g2"}], "]"}]}]}]}], "]"}], ",", "mirrors"}],
+         "}"}], "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+   "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0"}], "}"}]}], "}"}], ",", "Locator"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.80474037745329*^9, 3.8047404386444497`*^9}, {
+  3.8047404759475136`*^9, 3.804740484100546*^9}, {3.8047405300776095`*^9, 
+  3.8047406711183214`*^9}, {3.804740704778322*^9, 3.8047407862553215`*^9}, {
+  3.804740843350322*^9, 3.804740909542323*^9}, {3.804741921643078*^9, 
+  3.8047419653175898`*^9}, {3.804742017667104*^9, 3.804742044649102*^9}, {
+  3.804742102844648*^9, 3.8047423251022243`*^9}, {3.8047423989082236`*^9, 
+  3.804742453384226*^9}, {3.8047425709353404`*^9, 3.804742937614498*^9}, {
+  3.8047429692890177`*^9, 3.8047430037210183`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"1778828c-bc2e-49f4-a77e-7693f0c01845"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p$$ = {0.508, 0.2250000000000001}, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`p$$], {0, 0}}, Automatic}}, Typeset`size$$ = {
+    1152., {305., 310.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`p$$ = {0, 0}}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`g1$, $CellContext`g2$, $CellContext`gCheck$, \
+$CellContext`R1$, $CellContext`R2$, $CellContext`sigFigs$ = 
+         2, $CellContext`FormatNumber$, $CellContext`mirrors$, $CellContext`\
+\[Theta]Range$ = 
+         Pi/4, $CellContext`mirrorStyle$, $CellContext`CL$, $CellContext`CR$, \
+$CellContext`mirrorRange$ = 
+         2, $CellContext`leftMirrorEqn$, $CellContext`rightMirrorEqn$, \
+$CellContext`leftMirrorTop$, $CellContext`leftMirrorBottom$, \
+$CellContext`rightMirrorTop$, $CellContext`rightMirrorBottom$}, \
+$CellContext`FormatNumber$[
+           Pattern[$CellContext`n$, 
+            Blank[]]] := ToString[
+           
+           NumberForm[$CellContext`n$, $CellContext`sigFigs$]]; \
+$CellContext`g1$ = Part[$CellContext`p$$, 1]; $CellContext`g2$ = 
+         Part[$CellContext`p$$, 2]; $CellContext`gCheck$ = 
+         0 < $CellContext`g1$ $CellContext`g2$ < 1; $CellContext`R1$ = 
+         1/($CellContext`g1$ - 1); $CellContext`R2$ = 
+         1/($CellContext`g2$ - 
+          1); $CellContext`leftMirrorEqn$ = (-$CellContext`R1$) {
+             Cos[Pi + $CellContext`\[Theta]], 
+             Sin[Pi + $CellContext`\[Theta]]} + {-$CellContext`R1$ - 0.5, 
+            0}; $CellContext`leftMirrorTop$ = 
+         ReplaceAll[$CellContext`leftMirrorEqn$, $CellContext`\[Theta] -> \
+-$CellContext`\[Theta]Range$]; $CellContext`leftMirrorBottom$ = 
+         ReplaceAll[$CellContext`leftMirrorEqn$, $CellContext`\[Theta] -> \
+$CellContext`\[Theta]Range$]; $CellContext`rightMirrorEqn$ = \
+(-$CellContext`R2$) {
+             Cos[$CellContext`\[Theta]], 
+             Sin[$CellContext`\[Theta]]} + {
+           0.5 + $CellContext`R2$, 0}; $CellContext`rightMirrorTop$ = 
+         ReplaceAll[$CellContext`rightMirrorEqn$, $CellContext`\[Theta] -> \
+-$CellContext`\[Theta]Range$]; $CellContext`rightMirrorBottom$ = 
+         ReplaceAll[$CellContext`rightMirrorEqn$, $CellContext`\[Theta] -> \
+$CellContext`\[Theta]Range$]; $CellContext`CL$ = (-1)/
+           2 - $CellContext`R1$; $CellContext`CR$ = 
+         1/2 + $CellContext`R2$; $CellContext`mirrorStyle$ = {
+           Thickness[0.01], 
+           RGBColor[0.368417, 0.506779, 0.709798]}; $CellContext`mirrors$ = 
+         ParametricPlot[{$CellContext`leftMirrorEqn$, \
+$CellContext`rightMirrorEqn$}, {$CellContext`\[Theta], \
+-$CellContext`\[Theta]Range$, $CellContext`\[Theta]Range$}, 
+           PlotRange -> {-$CellContext`mirrorRange$, \
+$CellContext`mirrorRange$}, 
+           PlotStyle -> {$CellContext`mirrorStyle$, \
+$CellContext`mirrorStyle$}, Ticks -> None, AspectRatio -> 1, ImageSize -> 
+           Large, Epilog -> {Dashed, Thick, 
+             
+             Line[{$CellContext`leftMirrorTop$, {$CellContext`CL$, 
+                0}, $CellContext`leftMirrorBottom$}], Null, 
+             
+             Line[{$CellContext`rightMirrorTop$, {$CellContext`CR$, 
+                0}, $CellContext`rightMirrorBottom$}]}]; Row[{
+           
+           Show[$CellContext`gPlot, PlotLabel -> 
+            StringJoin["\!\(\*SubscriptBox[\(g\), \(1\)]\)=", 
+              $CellContext`FormatNumber$[$CellContext`g1$], 
+              ", \!\(\*SubscriptBox[\(g\), \(2\)]\)=", 
+              $CellContext`FormatNumber$[$CellContext`g2$], 
+              "; \!\(\*SubscriptBox[\(g\), \(1\)]\)\!\(\*SubscriptBox[\(g\), \
+\(2\)]\)=", 
+              $CellContext`FormatNumber$[$CellContext`g1$ \
+$CellContext`g2$]]], $CellContext`mirrors$}]], 
+      "Specifications" :> {{{$CellContext`p$$, {0, 0}}, Automatic, 
+         ControlType -> Locator}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1209., {339., 345.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.8047406713563213`*^9, 3.804740713893321*^9, {3.804740754347322*^9, 
+   3.8047407677933207`*^9}, 3.804740815744322*^9, {3.8047408688173213`*^9, 
+   3.804740876912321*^9}, 3.804740909852322*^9, {3.8047419530000772`*^9, 
+   3.804741965856589*^9}, {3.804742023999102*^9, 3.804742045000102*^9}, {
+   3.8047422076517067`*^9, 3.8047422435707083`*^9}, {3.804742275621709*^9, 
+   3.8047423255802226`*^9}, {3.804742386336223*^9, 3.8047424536642227`*^9}, {
+   3.8047426351793394`*^9, 3.80474267290837*^9}, 3.8047427484724984`*^9, {
+   3.8047427845114975`*^9, 3.804742801507498*^9}, {3.804742839972498*^9, 
+   3.804742877860498*^9}, {3.804742915853498*^9, 3.8047429378794985`*^9}, {
+   3.8047429861830177`*^9, 3.8047430039890165`*^9}, {3.804743142885825*^9, 
+   3.804743161356825*^9}, 3.804743215409856*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"25f3e4bd-704a-475e-aabe-e983c4860de0"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1904, 1149},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+TaggingRules->{"TryRealOnly" -> False},
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (March 18, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7cadfeb2-5efc-4a78-9a0f-8fadddbad3fd"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 260, 4, 96, "Title",ExpressionUUID->"ecfa150c-ee95-4b30-a9a1-bbbd75dcf05d"],
+Cell[843, 28, 770, 15, 100, "Text",ExpressionUUID->"9d2cbf57-c4f0-4e28-bb6e-7576f9094a51"],
+Cell[1616, 45, 2146, 49, 86, "Input",ExpressionUUID->"87258093-c2c5-4f02-8f99-8f431b8b2edf"],
+Cell[CellGroupData[{
+Cell[3787, 98, 9119, 216, 781, "Input",ExpressionUUID->"1778828c-bc2e-49f4-a77e-7693f0c01845"],
+Cell[12909, 316, 5808, 106, 703, "Output",ExpressionUUID->"25f3e4bd-704a-475e-aabe-e983c4860de0"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
